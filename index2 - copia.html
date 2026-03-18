@@ -1,0 +1,357 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+overflow-x:hidden;
+background:linear-gradient(#020b20,#041f45,#0b2f63);
+color:white;
+font-family:'Dancing Script',cursive;
+text-align:center;
+}
+
+.page{
+position:absolute;
+width:100%;
+min-height:100vh;
+display:none;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:80px 30px;
+}
+
+#p1{display:flex}
+
+h1{
+font-size:65px;
+color:#ffd6f5;
+text-shadow:0 0 25px pink;
+}
+
+p{
+max-width:750px;
+font-size:26px;
+line-height:1.7;
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:20px;
+}
+
+button{
+margin-top:30px;
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff8bdc,#ffd36b);
+cursor:pointer;
+box-shadow:0 0 15px pink;
+}
+
+.moon{
+position:fixed;
+top:80px;
+right:100px;
+width:110px;
+height:110px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 40px white;
+animation:moon 90s linear infinite;
+}
+
+@keyframes moon{
+0%{transform:translateX(0)}
+100%{transform:translateX(-900px)}
+}
+
+.star{
+position:fixed;
+width:3px;
+height:3px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 8px #ffd700;
+animation:twinkle 2.5s infinite alternate;
+}
+
+@keyframes twinkle{
+0%{opacity:0.4}
+100%{opacity:1;transform:scale(1.5)}
+}
+
+.meteor{
+position:fixed;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:meteor 1.4s linear;
+}
+
+.meteor:after{
+content:"";
+position:absolute;
+width:160px;
+height:3px;
+background:linear-gradient(to right, orange, transparent);
+left:-160px;
+}
+
+@keyframes meteor{
+0%{transform:translate(0,0)}
+100%{transform:translate(-600px,300px);opacity:0}
+}
+
+.fall{
+position:fixed;
+font-size:26px;
+animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh)}
+100%{transform:translateY(110vh)}
+}
+
+.firework{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
+animation:explode 1.6s ease-out forwards;
+}
+
+.firework span{
+position:absolute;
+width:3px;
+height:35px;
+background:currentColor;
+left:50%;
+top:50%;
+transform-origin:center bottom;
+}
+
+@keyframes explode{
+0%{transform:scale(0)}
+100%{transform:scale(2);opacity:0}
+}
+
+.ramoImg{
+width:280px;
+border-radius:20px;
+margin-top:20px;
+}
+
+.sobre{
+width:240px;
+height:160px;
+background:#f5e3c3;
+position:relative;
+cursor:pointer;
+margin-top:25px;
+border-radius:8px;
+}
+
+.tapa{
+position:absolute;
+width:100%;
+height:100%;
+background:#e8d2a8;
+clip-path:polygon(0 0,100% 0,50% 60%);
+transform-origin:top;
+transition:1s;
+}
+
+.carta{
+position:absolute;
+top:20px;
+left:-20px;
+width:280px;
+height:260px;
+background:white;
+padding:25px;
+overflow-y:auto;
+transform:translateY(90px);
+transition:1s;
+opacity:0;
+font-family:'Great Vibes',cursive;
+font-size:28px;
+color:black;
+line-height:1.5;
+border-radius:10px;
+}
+
+.abrir .tapa{
+transform:rotateX(180deg);
+}
+
+.abrir .carta{
+transform:translateY(-190px);
+opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<div class="page" id="p1">
+<h1>Feliz Primer Mes</h1>
+<p>
+A veces la vida cambia en silencio. Un día todo parece normal, y de repente aparece alguien que empieza a ocupar un lugar especial en tu mente y en tu corazón. Este mes contigo ha sido así para mí.
+</p>
+<button onclick="go(2)">Seguir</button>
+</div>
+
+<div class="page" id="p2">
+<h1>Contigo</h1>
+<p>
+Tal vez para otras personas un mes parezca poco tiempo. Pero cuando los momentos son reales y las conversaciones se sienten sinceras, incluso un pequeño tiempo puede sentirse enorme.
+</p>
+<button onclick="go(3)">Seguir</button>
+</div>
+
+<div class="page" id="p3">
+<h1>Algo Especial</h1>
+<p>
+En este tiempo contigo he descubierto que incluso los momentos simples pueden convertirse en recuerdos que vale la pena guardar.
+</p>
+<button onclick="go(4)">Seguir</button>
+</div>
+
+<div class="page" id="p4">
+<h1>Nuestro Tiempo</h1>
+<h2 id="contador"></h2>
+<p>
+Gracias por este primer mes. Tal vez sea solo el comienzo, pero incluso los comienzos pequeños pueden convertirse en historias grandes.
+</p>
+<button onclick="go(5)">Seguir</button>
+</div>
+
+<div class="page" id="p5">
+<h1>Pero antes...</h1>
+<button onclick="go(6)">Tengo algo para ti</button>
+</div>
+
+<div class="page" id="p6">
+
+<h1>Para Ti</h1>
+
+<img src="ramo.png" class="ramoImg">
+
+<p style="background:none">Click aquí</p>
+
+<div class="sobre" onclick="abrirSobre(this)">
+
+<div class="tapa"></div>
+
+<div class="carta">
+
+A veces es imposible explicar con palabras
+lo que una persona llega a significar.
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function go(n){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.style.display="none"
+})
+
+document.getElementById("p"+n).style.display="flex"
+
+}
+
+for(let i=0;i<200;i++){
+let s=document.createElement("div")
+s.className="star"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+document.body.appendChild(s)
+}
+
+setInterval(()=>{
+let m=document.createElement("div")
+m.className="meteor"
+m.style.left=Math.random()*100+"vw"
+m.style.top=Math.random()*40+"vh"
+document.body.appendChild(m)
+setTimeout(()=>m.remove(),1400)
+},2300)
+
+const emojis=["🌸","❤️","🌼"]
+
+setInterval(()=>{
+let e=document.createElement("div")
+e.className="fall"
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)]
+e.style.left=Math.random()*100+"vw"
+document.body.appendChild(e)
+setTimeout(()=>e.remove(),8000)
+},350)
+
+setInterval(()=>{
+
+let colors=["red","orange","yellow","cyan","pink","lime"]
+
+let f=document.createElement("div")
+f.className="firework"
+f.style.left=Math.random()*100+"vw"
+f.style.top=Math.random()*60+"vh"
+f.style.color=colors[Math.floor(Math.random()*colors.length)]
+
+for(let i=0;i<14;i++){
+let line=document.createElement("span")
+line.style.transform="rotate("+i*25+"deg)"
+f.appendChild(line)
+}
+
+document.body.appendChild(f)
+setTimeout(()=>f.remove(),1600)
+
+},2500)
+
+let inicio=new Date("2026-02-20")
+
+function actualizar(){
+
+let ahora=new Date()
+let diff=ahora-inicio
+
+let dias=Math.floor(diff/(1000*60*60*24))
+let horas=Math.floor(diff/(1000*60*60))%24
+let minutos=Math.floor(diff/(1000*60))%60
+
+document.getElementById("contador").innerText =
+"Llevamos "+dias+" días "+horas+" horas "+minutos+" minutos juntos"
+
+}
+
+setInterval(actualizar,1000)
+
+function abrirSobre(e){
+e.classList.toggle("abrir")
+}
+
+</script>
+
+</body>
+</html>
+```
